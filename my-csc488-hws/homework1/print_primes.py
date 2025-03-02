@@ -9,9 +9,7 @@ def is_prime(num):
 	if num < 2: 
 		return False
 	for divisor in range(2, int(num ** 0.5) + 1):
-		# print(num, " | ", divisor, " | ",  num%divisor)
 		if num % divisor == 0:
-			# print("\n")
 			return False
 	return True
 
@@ -20,4 +18,3 @@ def is_prime(num):
 for num in range(3,101):
 	if is_prime(num):
 		print(num)
-		# print("PRIME!")
