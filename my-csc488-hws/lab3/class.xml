@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<class>CSC488</class>
+	<title>Principle of Distributed Software Systems</title>
+	<subjects>
+		<unit>1</unit>
+		<topic>linux</topic>
+		<topic>python3</topic>
+		<topic>git</topic>
+	</subjects>
+	<subjects>
+		<unit>2</unit>
+		<topic>json</topic>
+		<topic>csv</topic>
+		<topic>xml</topic>
+		<topic>yaml</topic>
+	</subjects>
+</data>

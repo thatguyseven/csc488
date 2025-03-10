@@ -1,0 +1,23 @@
+{
+  "class": "CSC488",
+  "title": "Principles of Distributed Software Systems",
+  "subjects": [
+    {
+      "unit": 1,
+      "topic": [
+        "linux",
+        "python3",
+        "git"
+      ]
+    },
+    {
+      "unit": 2,
+      "topic": [
+        "json",
+        "csv",
+        "xml",
+        "yaml"
+      ]
+    }
+  ]
+}

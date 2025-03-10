@@ -7,3 +7,6 @@ with open('Meteorite_Landings.csv', 'r') as f:
     reader = csv.DictReader(f) 
     for row in reader: 
         data['meteorite_landings'].append(dict(row)) 
+
+for row in data['meteorite_landings']:
+    print(row)
