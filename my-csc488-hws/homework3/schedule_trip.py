@@ -20,7 +20,7 @@ def great_circle_distance(lat1, lon1, lat2, lon2):
     # Calculate the distance
     distance = R * c
 
-    return distance
+    return distance/10
 
 def gather_sample(comp):
     composition_type = {'stony':1, 'iron':2, 'stony-iron':3}
