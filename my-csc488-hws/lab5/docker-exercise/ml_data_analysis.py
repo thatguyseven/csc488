@@ -1,5 +1,6 @@
 import json 
- 
+import sys
+
 def compute_average_mass(a_list_of_dicts, a_key_string): 
     total_mass = 0. 
     for i in range(len(a_list_of_dicts)): 
@@ -18,7 +19,7 @@ def check_hemisphere(latitude: float, longitude: float) -> str:    # type hints
         location = f'{location} & Western' 
     return(location) 
  
-with open('Meteorite_Landings.json', 'r') as f: 
+with open(sys.argv[1], 'r') as f: 
     ml_data = json.load(f) 
  
 print(compute_average_mass(ml_data['meteorite_landings'], 'mass (g)')) 
