@@ -1,5 +1,5 @@
-import json 
 import sys
+import json 
  
 def compute_average_mass(a_list_of_dicts, a_key_string): 
     total_mass = 0. 
