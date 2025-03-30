@@ -18,5 +18,5 @@ services:
     image: aan1/ml_data_analysis:1.0 
     volumes: 
       - ./test:/data 
-    command: ml_data_analysis.py /data/ml.json 
+    command: ./ml_data_analysis.py /data/ml.json 
 ...
