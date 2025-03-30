@@ -1,0 +1,94 @@
+{
+  "meteorite_landings": [
+    {
+      "name": "Felix",
+      "id": "10001",
+      "recclass": "L5",
+      "mass (g)": "3645",
+      "reclat": "89.8470",
+      "reclong": "11.0226",
+      "GeoLocation": "(89.8470, 11.0226)"
+    },
+    {
+      "name": "Dorothy",
+      "id": "10002",
+      "recclass": "EH4",
+      "mass (g)": "9656",
+      "reclat": "-88.3493",
+      "reclong": "79.8742",
+      "GeoLocation": "(-88.3493, 79.8742)"
+    },
+    {
+      "name": "June",
+      "id": "10003",
+      "recclass": "H4",
+      "mass (g)": "7944",
+      "reclat": "66.3247",
+      "reclong": "-40.3677",
+      "GeoLocation": "(66.3247, -40.3677)"
+    },
+    {
+      "name": "Robert",
+      "id": "10004",
+      "recclass": "EH4",
+      "mass (g)": "8001",
+      "reclat": "8.9052",
+      "reclong": "13.3270",
+      "GeoLocation": "(8.9052, 13.3270)"
+    },
+    {
+      "name": "Sherman",
+      "id": "10005",
+      "recclass": "EH4",
+      "mass (g)": "4158",
+      "reclat": "-64.5245",
+      "reclong": "82.2196",
+      "GeoLocation": "(-64.5245, 82.2196)"
+    },
+    {
+      "name": "Rosemary",
+      "id": "10006",
+      "recclass": "H5",
+      "mass (g)": "4293",
+      "reclat": "-63.4518",
+      "reclong": "-12.6805",
+      "GeoLocation": "(-63.4518, -12.6805)"
+    },
+    {
+      "name": "James",
+      "id": "10007",
+      "recclass": "EH4",
+      "mass (g)": "1963",
+      "reclat": "57.8953",
+      "reclong": "-52.5795",
+      "GeoLocation": "(57.8953, -52.5795)"
+    },
+    {
+      "name": "Curtis",
+      "id": "10008",
+      "recclass": "L5",
+      "mass (g)": "2196",
+      "reclat": "22.5059",
+      "reclong": "65.7051",
+      "GeoLocation": "(22.5059, 65.7051)"
+    },
+    {
+      "name": "Charlie",
+      "id": "10009",
+      "recclass": "CR2-an",
+      "mass (g)": "1061",
+      "reclat": "-32.4252",
+      "reclong": "-16.3692",
+      "GeoLocation": "(-32.4252, -16.3692)"
+    },
+    {
+      "name": "Betty",
+      "id": "10010",
+      "recclass": "L6",
+      "mass (g)": "4432",
+      "reclat": "2.8533",
+      "reclong": "-22.0098",
+      "GeoLocation": "(2.8533, -22.0098)"
+    }
+  ]
+}

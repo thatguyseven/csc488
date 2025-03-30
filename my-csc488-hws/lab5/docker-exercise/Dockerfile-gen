@@ -1,0 +1,30 @@
+# Use the official Alpine image
+FROM alpine:latest
+
+# Set working directory as code
+WORKDIR /code
+
+# Copy the application and dependencies to the container
+COPY gen_ml_data.py /code/
+COPY requirements.txt /code/
+
+# Install Python and venv
+# DEBUG NOTE: Ensure the virtul environment is activate before beginning any installation operations. This 
+RUN apk add --no-cache python3 py3-pip python3-dev && \
+    python3 -m venv /venv && \
+    source /venv/bin/activate && \
+    python3 -m ensurepip && \
+    pip3 install --upgrade pip
+
+
+# Install dependencies
+RUN /venv/bin/pip install -r requirements.txt
+
+# Allow gen_ml_data.py to run in the command line
+RUN chmod +rx gen_ml_data.py
+
+# Set environment variables to use the virtual environment
+ENV PATH="/venv/bin:$PATH"
+
+# USE: Run the command docker run --rm -it -v "$PWD:/code" aan1/alpine-python-names:1.0 <file_name>.json to save the data to a local directory
+# USE: Run the command docker run --rm -v $PWD:/data -u $(id -u):$(id -g) aan1/gen-ml-data:1.0 ./gen_ml_data.py /data/ml.json to save the data to a test directory

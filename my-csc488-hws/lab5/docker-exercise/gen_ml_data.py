@@ -1,8 +1,8 @@
-#!/usr/bin/ python3 
+#!/usr/bin/env python3 
 import json 
 import random 
 import sys 
-import names
+import names 
 
 NUM = 10 
 CLASSES = ['CI1', 'CR2-an', 'CV3', 'EH4', 'H4', 'H5', 'H6', 'L5', 'L6', 'LL3-6', 'LL5'] 
@@ -21,10 +21,10 @@ def main():
         data['meteorite_landings'][i]['reclat'] = rand_lat 
         data['meteorite_landings'][i]['reclong'] = rand_lon 
         data['meteorite_landings'][i]['GeoLocation'] = f'({rand_lat}, {rand_lon})' 
-    
+ 
     with open(sys.argv[1], 'w') as o: 
         json.dump(data, o, indent=2) 
-        print(f'Data written to {sys.argv[1]}!') 
+    print(f'Data written to {sys.argv[1]}!') 
  
 if __name__ == '__main__': 
     main() 
