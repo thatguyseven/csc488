@@ -1,0 +1,14 @@
+---
+version: "3" 
+ 
+services: 
+  gen-data: 
+    build: 
+      context: ./ 
+      dockerfile: ./Dockerfile
+    image: aan1/app:1.0 
+    volumes: 
+      - ./test:/data 
+    user: "1001:1001" 
+    command: ./gen_ml_data.py /data/ml.json 
+...
