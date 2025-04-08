@@ -1,6 +1,5 @@
 #!/usr/bin/env python3 
 import xmltodict as xml  # Import xmltodict to convert XML into a Python dictionary
-from datetime import datetime  # Import datetime for time formatting
 from flask import Flask, request, Response, jsonify
 import requests
 import os
@@ -515,7 +514,7 @@ def show_Country() -> Response:
         # STEP 2: Prepare return message with XML attachment and return result
         logging.info("SUCCESS: Country data retrieval successful!")
         country_xml = result.to_xml(root_name='countries', row_name='COUNTRY', index=False, parser="etree")
-        
+
         # Return the XML with the appropriate Content-Type header
         return Response(country_xml, mimetype='application/xml')
     
