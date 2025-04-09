@@ -28,6 +28,8 @@ The datasets are accessed through the browser. This API can query the data files
 
 | Endpoint | Result |
 | - | - | 
+| `/` | Main endpoint. Contains information regarding all other endpoints in this API |
+| `/load-data` | Loads data from local files into the database. |
 | `/epoch` | Retrieves all epochs in positional data. |
 | `/epoch=<epoch>` | Retrieves specific epoch with specific flight time. Epoch must be a string. | 
 | `/countries` | Retrieves all countries in sighting data. |
