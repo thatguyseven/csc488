@@ -241,9 +241,9 @@ def test_cities_not_found(client):
     """
     Test case for a request where no data is found for the given region, country pair.
     Expected Results:
-        Test Case 1: status_code == 400
-        Test Case 2: status_code == 400
-        Test Case 3: status_code == 400
+        Test Case 1: status_code == 404
+        Test Case 2: status_code == 404
+        Test Case 3: status_code == 404
     """
 
     # Test Case 1: Country not found
