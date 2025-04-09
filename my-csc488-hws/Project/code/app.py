@@ -45,24 +45,29 @@ def get_nasa_xml_as_dict(url):
     else:
         return {"error": "Failed to retrieve XML file"}
 
-def fetch_positional_data(ephemeris_url="https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_OEM/ISS.OEM_J2K_EPH.xml"):
+def fetch_positional_data(ephemeris_file="ISS.OEM_J2K_EPH.xml"):
     """
     Retrieves ephemeris position XML file from NASA API. 
 
 	Parameters: 
         ephemeris_file (string): File name for positional data. Default is the NASA API website.
-        ephemeris_file="ISS.OEM_J2K_EPH.xml"
 	Return: 
         ephemeris_data (dict): A dictionary containing the sanitized version of the retrieved XML data
     Test:
         RUN - PASS
     """
+    filepath = os.path.join(DATA_DIR, ephemeris_file)
     try:
-        # Sending a GET request to the external API
-        logging.info("Fetching https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_OEM/ISS.OEM_J2K_EPH.xml...")
-        response = get_nasa_xml_as_dict(ephemeris_url)
+        # Reading from NASA XML file
+        logging.info("Fetching ISS.OEM_J2K_EPH.xml...")
+        with open(filepath, "r", encoding="utf-8") as file:
+            xml_content = file.read()
         logging.info("Fetch Success!")
-        # Convert XML to a Python dictionary
+
+        # Convert XML to a dictionary
+        response = xml.parse(xml_content)
+
+        # Remove extraneous tags
         state_vectors = response["ndm"]["oem"]["body"]["segment"]["data"]["stateVector"]
 
         # List to store parsed ephemeris data
@@ -98,22 +103,28 @@ def fetch_positional_data(ephemeris_url="https://nasa-public-data.s3.amazonaws.c
         logging.info("Fetch Failed!")
         return {"error": str(e)}
 
-def fetch_sighting_data(sighting_url = "https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_sightings/XMLsightingData_citiesUSA07.xml"):
+def fetch_sighting_data(sighting_file = "XMLsightingData_citiesUSA07.xml"):
     """
     Retrieves XMLsightingData_citiesUSA07.xml file from NASA API and sanitizes the positional data as floats for analysis.
 
 	Parameters: 
-        sighting_url (string): URL for sighting data. Default is the NASA API website.
+        sighting_file (string): File name for ISS Sighting Data XML file. Default is 'XMLsightingData_citiesUSA07.xml'.
+        sighting_url = "https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_sightings/XMLsightingData_citiesUSA07.xml"
 	Return: 
         visible_pass_data (dict): A dictionary containing all visible pass data 
     Test:
         RUN - PASS
     """
+    filepath = os.path.join(DATA_DIR, sighting_file)
     try:
-        # Sending a GET request to the external API
-        logging.info("Fetching https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_sightings/XMLsightingData_citiesUSA07.xml...")
-        response = get_nasa_xml_as_dict(sighting_url)
+        # Reading from NASA XML file
+        logging.info("Fetching XMLsightingData_citiesUSA07.xml...")
+        with open(filepath, "r", encoding="utf-8") as file:
+            xml_content = file.read()
         logging.info("Fetch Success!")
+
+        # Convert XML to a dictionary
+        response = xml.parse(xml_content)
 
         # Extract the list of visible passes
         visible_passes = response['visible_passes']['visible_pass']
@@ -397,7 +408,7 @@ def load_data() -> Response:
             logging.info("END: SAVED")
         else: 
             # Otherwise, fetch data from the local XML file
-            position_data = dict_to_df(load_from_xml(positional_file))
+            sighting_data = dict_to_df(load_from_xml(sighting_file))
 
         logging.info("END: FETCHING COMPLETE")
 
@@ -475,8 +486,8 @@ def find_Epoch(epoch) -> Response:
             # Returns an error if no results are found
             return Response({"error": "Epoch not Found", "message": "Queried epoch is not in sighting data."}, status=404, mimetype="application/xml")
         
-        epoch_data = result.to_frame()
-        epoch_xml = epoch_data.to_xml(root_name='epochs', row_name='EPOCH', index=False, parser="etree")
+        # epoch_data = result.to_frame()
+        epoch_xml = result.to_xml(root_name='epochs', row_name='EPOCH', index=False, parser="etree")
         
         # STEP 2: Prepare return message with XML attachment and return result
         logging.info("SUCCESS: Epoch data retrieval successful!")
@@ -510,7 +521,6 @@ def show_Country() -> Response:
         # STEP 1: Query SIGHTING_DATA for country list
         result = sighting_data["country"].to_frame().drop_duplicates()
         
-        
         # STEP 2: Prepare return message with XML attachment and return result
         logging.info("SUCCESS: Country data retrieval successful!")
         country_xml = result.to_xml(root_name='countries', row_name='COUNTRY', index=False, parser="etree")
@@ -541,6 +551,8 @@ def find_Country(country) -> Response:
 
     logging.info("GET /countries=<country> request.")
     try:
+        print(sighting_data.head())
+        
         logging.info(f"Retrieving COUNTRY={country} data...")
 
         # STEP 1: Query SIGHTING_DATA for specific country
@@ -751,4 +763,4 @@ def find_City(country, region, city) -> Response:
         return return_message
 
 if __name__ == '__main__':
-        app.run(debug=True)
+        app.run(host='0.0.0.0', debug=True)

@@ -1,0 +1,4 @@
+xmltodict
+pandas
+flask
+Requests
