@@ -40,3 +40,6 @@ All strings must be encapsulated in quotation marks like so: `localhost:5000/cou
 Note: The `/epoch=<epoch>` endpoint is an exception to this. Use it like so `localhost:5000/epoch=EPOCHTIMESTAMP`. 
 
 ## How to Contribute
+To contribute to this repository:
+1. Fork this repository.
+2. Send a pull request.
