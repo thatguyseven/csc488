@@ -7,6 +7,7 @@ build:
 	docker build -t ${Name}/iss-info-api:1.0 . 
  
 run: 
-	docker run --name nasa-api -p 5000:5000 ${Name}/iss-info-api:1.0 
+	docker create --name nasa-api -p 5000:5000 ${Name}/iss-info-api:1.0 
+	docker start nasa-api
 push: 
 	docker push ${Name}/iss-info-api:1.0
