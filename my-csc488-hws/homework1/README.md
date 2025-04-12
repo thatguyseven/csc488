@@ -1,8 +1,7 @@
-# Homework 1
-A repository for files required for Homework 1 assignment. It contains the following files: 
+# Homework 2
+Assignment: Create a Python program that allows users to store, update, search, and display student grades using a simple text file for storage.
 
-| File Name | Description |
-| ---------- | ---------- | 
-| print_primes.py | Prints prime numbers from 3 to 100 (inclusive) |
-| three_lists.py | Prints three lists. The first list contains numbers from 1 to 10. The second contains the squares of the numbers in the first list. The third contains the squares of those numbers. |
-| print_from_file.py | Prints any word starting with the characters "pyt" from the file /usr/share/dict/words. Incomplete due to /usr/share/dict/words being unavailable in production environment. | 
+| Files | Description |
+| - | - |
+| student_records.py | A python file containing all specified functions in the assignment. Includes functions to add a record, display current records, search a student by ID, delete a record, and update a record. |
+| grades.txt | A text file for storing the records |
