@@ -5,4 +5,5 @@ WORKDIR /app
 COPY ml_data_analysis.py /app 
 COPY Meteorite_Landings.json /app 
 
-CMD ["python3", "ml_data_analysis.py", "Meteorite_Landings.json"]
+ENTRYPOINT ["python3", "ml_data_analysis.py"]
+CMD ["Meteorite_Landings.json"]
