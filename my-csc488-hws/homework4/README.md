@@ -41,7 +41,7 @@ To pull a copy of the existing container:
    If you want to use your own JSON file, run the following command:
    `docker run --rm -v ${PWD}:/data <username>/quadrant-landings:latest /data/<filename>`
 
-If you need a sample dataset to try the above command, there is one available [here](https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json)
+If you need a sample dataset to try the above command, there is one available [here](https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json).
 
 ## Testing the App
 To test the application, run `docker run --rm  <username>aan1/test-quadrant-landings:latest`.
