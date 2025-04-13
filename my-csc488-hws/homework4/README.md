@@ -20,7 +20,9 @@ Below are instruction for how to get and run the app as a container.
 To pull a copy of the existing container:
 1. Open your terminal.
 2. Run the following commands to download the respoective container:
+
 `docker pull aan1/quadrant-landings` -> Application Container
+
 `docker pull aan1/test-quadrant-landings` -> Test Container
 
 ## Building the Container
@@ -30,7 +32,9 @@ To buils a new container and push it to your own repository:
 3. Navigate to the folder containing all of the application files.
 4. Change the `Name` variable in the Makefile to your username.
 5. Run the `make` command to build both containers or run one of the following commands to build the respective container:
+
 `docker build -f ./Dockerfile -t ${Name}/quadrant-landings:latest .` -> Application Container
+
 `docker build -f ./Dockerfile_test -t ${Name}/test-quadrant-landings:latest .` -> Test Container
 
 ## Running the Code
@@ -38,6 +42,7 @@ To pull a copy of the existing container:
 1. Open your terminal.
 2. Run the command to run the container:  
 `docker run --rm  <username>/quadrant-landings:latest` -> Application Container
+
 If you want to use your own JSON file, run the following command:
 `docker run --rm -v ${PWD}:/data <username>/quadrant-landings:latest /data/<filename>`
 
