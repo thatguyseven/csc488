@@ -25,7 +25,7 @@ def compute_average_mass(a_list_of_dicts: List[dict], a_key_string: str) -> floa
     """
     if (len(a_list_of_dicts) == 0):
         logging.error('a list of dicts is empty')
-    total_mass = 0.
+    total_mass = 0
     for item in a_list_of_dicts:
         total_mass += float(item[a_key_string])
     return(total_mass / len(a_list_of_dicts) )
@@ -46,8 +46,10 @@ def check_hemisphere(latitude: float, longitude: float) -> str:
     if latitude == 0 or longitude == 0:
         #logging.error('youre not really in a hemisphere')
         raise(ValueError)
+    
     location = 'Northern' if (latitude > 0) else 'Southern'
     location = f'{location} & Eastern' if (longitude > 0) else f'{location} & Western'
+
     return(location)
 
 
@@ -86,10 +88,24 @@ def main():
 
     print(compute_average_mass(ml_data['meteorite_landings'], 'mass (g)'))
 
+    # NOTE: Add a portion of code to count and print the quadrants instead of individual sites
+    # Dictionary to determine the quadrant
+    quadrants = {
+        "Northern & Eastern": 0,
+        "Northern & Western": 0,
+        "Southern & Eastern": 0,
+        "Southern & Western": 0,
+    }
     for row in ml_data['meteorite_landings']:
-        print(check_hemisphere(float(row['reclat']), float(row['reclong'])))
+        # Determine the quadrant the meteorite is in
+        quadrant_str = check_hemisphere(float(row['reclat']), float(row['reclong']))
+        # Increment the corresponding quadrant by 1
+        quadrants[quadrant_str] += 1
 
-    print(count_classes(ml_data['meteorite_landings'], 'recclass'))
+    for quadrant, num in quadrants.items():
+        print(f"There are {num} meteorites in the {quadrant} quadrant.")
+
+    # print(count_classes(ml_data['meteorite_landings'], 'recclass'))
 
 
 if __name__ == '__main__':

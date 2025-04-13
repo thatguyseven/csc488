@@ -1,0 +1,19 @@
+---
+version: "3" 
+ 
+services: 
+  quadrant: 
+    build: 
+      context: ./ 
+      dockerfile: ./Dockerfile
+    image: quadrant-landings:latest
+    user: "1001:1001" 
+    command: python3 ml_data_analysis.py Meteorite_Landings.json
+  test-quadrant: 
+    build: 
+      context: ./ 
+      dockerfile: ./Dockerfile-test
+    image: aan1/test-quadrant-landings:latest 
+    user: "1001:1001" 
+    command: pytest test_ml_data_analysis.py
+...
