@@ -5,4 +5,5 @@ WORKDIR /app
 COPY . /app 
 RUN pip install -r /app/requirements.txt 
 
-CMD ["pytest", "test_ml_data_analysis.py"]
+ENTRYPOINT ["pytest"] 
+CMD ["test_ml_data_analysis.py"]

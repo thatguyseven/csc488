@@ -17,9 +17,11 @@ def load_to_redis():
         # Stores landing sites into Redis database
         for site_id, row in enumerate(data["meteorite_landings"], start=1):
                 key = str(site_id)
+                """
                 # Ensure all keys and values are strings
                 stringified_row = {str(k): str(v) for k, v in row.items()}
-                rd.hset(key, mapping=stringified_row)
+                """
+                rd.hset(key, mapping=row)
         # Return success message
         return jsonify({"message": f"Successfully loaded {len(data["meteorite_landings"])} meteorite landings into Redis."}), 200
 
