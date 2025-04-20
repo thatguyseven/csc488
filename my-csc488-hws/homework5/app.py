@@ -10,6 +10,15 @@ app = Flask(__name__)
         
 @app.route("/data", methods=['POST'])
 def load_to_redis():
+        """
+        Loads data from Meteorite_Landings.json in the data folder into a Redis database. Returns a HTTP 
+        message about load status.
+
+        Args:
+                none
+        
+        Returns: HTTP JSON message
+        """
         # Opens "Meteorite_Landings.json" and loads data into local memory
         with open("./data/Meteorite_Landings.json", "r") as f:
                 data = json.load(f)
@@ -37,10 +46,18 @@ def load_to_redis():
                 except Exception as e:
                         print(f"Redis insert failed for key {key}: {e}")
         # Return success message
-        return jsonify({"message": f"Successfully loaded {len(data["meteorite_landings"])} meteorite landings into Redis."}), 200
+        return jsonify({"message": f"Successfully loaded {len(data['meteorite_landings'])} meteorite landings into Redis."}), 200
 
 @app.route("/data", methods=['GET'])
 def load_from_redis():
+        """
+        Loads data from Redis database. Returns site data in a JSON message.
+
+        Args:
+                limit (int): Optional. Specifies number of data elements returned.
+        
+        Returns: Site Data in JSON
+        """
         # Optional query parameter to limit query
         limit = request.args.get('limit') 
         meteorite_data = []
