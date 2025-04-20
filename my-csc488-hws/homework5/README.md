@@ -5,7 +5,7 @@ Prerequisites:
 - Docker
 - Redis Database
 - Directory files
-- Meteorite_Landings.json file. This dataset is available (here) [https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json].
+- Meteorite_Landings.json file. This dataset is available [here](https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json).
 
 Contents:
 | File | Description |
