@@ -5,6 +5,7 @@ Prerequisites:
 - Docker
 - Redis Database
 - Directory files
+- Meteorite_Landings.json file. This dataset is available (here) [https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json].
 
 Contents:
 | File | Description |
@@ -15,7 +16,7 @@ Contents:
 | Dockerfile | Dockerfile to build the Flask application |
 
 ## Launching the Redis Database
-To create the Redis database, run the command `docker run -d -p 6379:6379 -v ${pwd}:/data --name=hw5-data redis:6 --save 1 1`.
+To create the Redis database, run the command `docker run -d -p 6379:6379 -v ${pwd}:/data --name=hw5-data redis:6 --save 1 1`. 
 
 ## Building the App
 To run the app, follow the instructions below.
