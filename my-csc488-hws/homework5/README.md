@@ -6,6 +6,12 @@ Prerequisites:
 - Redis Database
 - Directory files
 
+Contents:
+| File | Description |
+| - | - |
+| redis_info.py | An import file for returning a Redis database address from the localhost. |
+| app.py | A copy of app.py from Lab 6 with an added `/data` endpoint. |
+
 ## Launching the Redis Database
 To create the Redis database, run the command `docker run -d -p 6379:6379 -v ${pwd}:/data --name=hw5-data redis:6 --save 1 1`.
 
