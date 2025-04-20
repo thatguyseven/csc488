@@ -14,14 +14,28 @@ def load_to_redis():
         with open("./data/Meteorite_Landings.json", "r") as f:
                 data = json.load(f)
         
-        # Stores landing sites into Redis database
+        # Enumerate each site in the landing data and store each row in the redis database
         for site_id, row in enumerate(data["meteorite_landings"], start=1):
-                key = str(site_id)
-                """
-                # Ensure all keys and values are strings
-                stringified_row = {str(k): str(v) for k, v in row.items()}
-                """
-                rd.hset(key, mapping=row)
+                key = f"{site_id}"
+                # DEBUG: Print type and content of data row
+                # print(f"Row {site_id}: {row}")
+                # print(f"Type: {type(row)}, Content: {row}")
+                if not isinstance(row, dict):
+                        print(f"Skipping invalid row at index {site_id}: {row}")
+                        continue
+
+                clean_row = {str(k): str(v) for k, v in row.items()}
+
+                # DEV NOTE: The reason why this does not work is likely due to some incongruity with the redis server and the version of redis used.
+                try:
+                        # DEBUG: Logging print functions 
+                        # print(f"Row {site_id}: {clean_row}")
+                        # print(f"Type: {type(clean_row)}, Content: {clean_row}")
+                        # Iterate through the clean_row and set each field-value pair
+                        for field, value in clean_row.items():
+                                rd.hset(key, field, value)
+                except Exception as e:
+                        print(f"Redis insert failed for key {key}: {e}")
         # Return success message
         return jsonify({"message": f"Successfully loaded {len(data["meteorite_landings"])} meteorite landings into Redis."}), 200
 
@@ -35,7 +49,6 @@ def load_from_redis():
         if limit: 
                 try: 
                         limit = int(limit) 
-                        return jsonify(meteorite_data[0:limit])
                 except ValueError: 
                         return "Invalid limit parameter; limit must be an integer.", 400
                 
@@ -44,7 +57,7 @@ def load_from_redis():
         while True:
                 # Check if limit exists, then check if key exceeds limit 
                 if limit: 
-                        if site_id <= limit:
+                        if site_id > limit:
                                 break
 
                 key = f"{site_id}"
@@ -65,6 +78,9 @@ def load_from_redis():
                 # Move to the next key
                 site_id += 1
         
+        # If the limit variable exists, return data up to the limit
+        if limit:
+                return jsonify(meteorite_data[0:limit])
         # Return the meteorite data as JSON
         return jsonify(meteorite_data)
 
