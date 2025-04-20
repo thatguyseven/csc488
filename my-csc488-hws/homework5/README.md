@@ -22,7 +22,7 @@ The Flask server should be up and running at this point.
 The following endpoints are available:
 
 | Endpoint | Request Type | Description | Options |
-| - | - | - | 
+| - | - | - | - |
 | `/data` | POST | Loads site data in `Meteorite_Landings.json` into Redis database. | None |
 | `/data` | GET | Retrieves site data from the Redis database. | limit - Limits number of entries retrieved, starting from the first |
 
