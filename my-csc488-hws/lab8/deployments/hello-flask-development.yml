@@ -1,0 +1,27 @@
+--- 
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: helloflask 
+  labels: 
+    app: helloflask 
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: helloflask 
+  template: 
+    metadata: 
+      labels: 
+        app: helloflask 
+    spec: 
+      containers: 
+        - name: helloflask 
+          imagePullPolicy: Always 
+          image: jstubbs/hello-flask 
+          env: 
+          - name: FLASK_APP 
+            value: "app.py" 
+          ports: 
+          - name: http 
+            containerPort: 5000 
