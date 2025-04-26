@@ -1,0 +1,31 @@
+--- 
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: aan1-test-meteorite-landings-app-data
+  labels: 
+    app: aan1-meteorite-landings-app-data
+    username: aan1
+    env: test
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: aan1-meteorite-landings-app-data
+  template: 
+    metadata: 
+      labels: 
+        app: aan1-meteorite-landings-app-data
+        username: aan1
+        env: test
+    spec: 
+      containers: 
+        - name: aan1-meteorite-landings-app-data
+          image: redis:6
+          volumeMounts: 
+            - name: aan1-landings-app-data
+              mountPath: "/data" 
+      volumes: 
+        - name: aan1-landings-app-data
+          persistentVolumeClaim: 
+            claimName: aan1-landings-app-data
