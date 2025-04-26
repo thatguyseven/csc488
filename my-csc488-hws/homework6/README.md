@@ -1,11 +1,12 @@
-# Homework 5
-This directory contains a containerized version of the Flask app present in Lab 7. This application allows for loading and querying the database immediately after building the application.
+# Homework 6
+This directory contains a Kubernetes deployment of the Flask app present in Lab 7. This application deploys the API in a Kubernetes cluster.
 
 Prerequisites:
-- Docker
-- Redis Database
-- Directory files
+- Docker.
+- Redis Database.
+- Directory files.
 - Meteorite_Landings.json file. This dataset is available [here](https://raw.githubusercontent.com/wjallen/coe332-sample-data/main/ML_Data_Sample.json).
+- A Kubernetes Cloud or a comparable container. MiniKube is used in this application.
 
 Contents:
 | File | Description |
@@ -15,17 +16,16 @@ Contents:
 | requirements.txt | A text file containing the python dependencies required for this application. |
 | Dockerfile | Dockerfile to build the Flask application |
 
-## Launching the Redis Database
-To create the Redis database, run the command `docker run -d -p 6379:6379 -v ${pwd}:/data --name=hw5-data redis:6 --save 1 1`. 
-
 ## Building the App
 To run the app, follow the instructions below.
 1. Download the application files.
 2. In the terminal, change to the directory containing the application files.
-3. Build the image with the command: `docker build -t <username>/hw5-data:latest .`
-5. Run a container with the command: `docker run -d --name hw5-app -p 5000:5000 --link hw5-data:redis aan1/hw5-app:latest`
+3. Run `minikube start` to launch the Kubernetes cloud server. This step can be skipped if already connected to a Kubernetes cloud server.
+4. Build the image with the command: `make`
 
-The Flask server should be up and running at this point.
+The cluster should be available now. To verify, follow the instructions below:
+1. In the terminal, run `kubectl get pods`. Three pods should be running.
+2. Run `kubectl get services` to check that the services are running. The services `test-flask-server` and `test-redis-server` should exist.
 
 ## Application Endpoints
 The following endpoints are available:
@@ -34,6 +34,13 @@ The following endpoints are available:
 | - | - | - | - |
 | `/data` | POST | Loads site data in `Meteorite_Landings.json` into Redis database. | None |
 | `/data` | GET | Retrieves site data from the Redis database. | limit - Limits number of entries retrieved, starting from the first |
+
+To test these endpoints, open a python debug environment to `curl` the server by following the instructions below:
+1. In the command line, run `kubectl apply -f deployments/deployment-python-debug.yml`.
+2. Run `kubectl get services`. Note down the IP address of the Flask server.
+3. In a separate terminal, run `kubectl exec -it py-debug-deployment-6c86744b9b-hpdv9 -n default -- /bin/sh` to open the command line for the test evironment.
+4. In the python debug environment, run `curl -X POST <your-flask-ip-addr>:5000/data`. This will load the data into the redis server.
+5. In the python debug environment, run `curl <your-flask-ip-addr>:5000/data`. This will output data points from the server.
 
 ## Interpretting the Data
 The meteorite landing data returned contains the following:
