@@ -14,14 +14,16 @@ Contents:
 | redis_info.py | An import file for returning a Redis database address from the localhost. |
 | app.py | A copy of app.py from Lab 6 with an added `/data` endpoint. |
 | requirements.txt | A text file containing the python dependencies required for this application. |
-| Dockerfile | Dockerfile to build the Flask application |
+| Dockerfile | Dockerfile to build the Flask application. |
+| Makefile | Makefile to simplify building process. |
 
 ## Building the App
 To run the app, follow the instructions below.
 1. Download the application files.
 2. In the terminal, change to the directory containing the application files.
-3. Run `minikube start` to launch the Kubernetes cloud server. This step can be skipped if already connected to a Kubernetes cloud server.
-4. Build the image with the command: `make`
+3. Within the Makefile, change the `Name` variable to match your Docker username.
+4. Run `minikube start` to launch the Kubernetes cloud server. This step can be skipped if already connected to a Kubernetes cloud server.
+5. Build the image with the command: `make`. This will build the image.
 
 The cluster should be available now. To verify, follow the instructions below:
 1. In the terminal, run `kubectl get pods`. Three pods should be running.
